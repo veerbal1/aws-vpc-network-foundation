@@ -69,7 +69,7 @@ resource "aws_iam_role" "github_actions" {
             "token.actions.githubusercontent.com:aud" = "sts.amazonaws.com"
           }
           StringLike = {
-            "token.actions.githubusercontent.com:sub" = "repo:veerbal1/aws-vpc-network-foundation:*"
+            "token.actions.githubusercontent.com:sub" = "repo:veerbal1@55359171/aws-vpc-network-foundation@1418744444:*"
           }
         }
       }
