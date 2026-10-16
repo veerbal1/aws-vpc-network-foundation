@@ -1,0 +1,30 @@
+direction right
+colorMode pastel
+styleMode shadow
+typeface clean
+
+Developer [icon: user, label: "Developer laptop"]
+
+GitHub [icon: github] {
+  Repo [icon: git-branch, label: "Repository"]
+  Actions [icon: github-actions, label: "deploy.yml"]
+}
+
+IAM [icon: aws-iam, label: "IAM (bootstrap/)"] {
+  OIDC Provider [icon: aws-iam, label: "OIDC provider"]
+  CI Role [icon: aws-iam, label: "CI role"]
+}
+
+State Bucket [icon: aws-s3, label: "S3 state bucket"] {
+  tfstate [icon: file, label: "terraform.tfstate"]
+  tflock [icon: lock, label: ".tflock"]
+}
+
+VPC [icon: aws-vpc, label: "VPC 10.42.0.0/16 (20 resources)"]
+
+Developer > Repo: git push
+Repo > Actions: push to infra/**
+Actions > OIDC Provider: 1. signed token
+OIDC Provider > CI Role: 2. sub matches IDs
+CI Role > State Bucket: 3. lock and read state
+CI Role > VPC: 4. terraform apply

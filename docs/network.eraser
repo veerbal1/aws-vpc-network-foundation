@@ -1,0 +1,41 @@
+direction right
+colorMode pastel
+styleMode shadow
+typeface clean
+
+Internet [icon: globe]
+
+VPC [icon: aws-vpc, label: "VPC 10.42.0.0/16 (ap-south-1)"] {
+  Internet Gateway [icon: aws-internet-gateway]
+
+  Public [color: blue] {
+    Public A [icon: aws-vpc, label: "public-a 10.42.0.0/24"]
+    NAT Gateway [icon: aws-nat-gateway, label: "NAT in public-a"]
+    Public B [icon: aws-vpc, label: "public-b 10.42.1.0/24"]
+  }
+
+  Private [color: purple] {
+    Private A [icon: aws-ec2, label: "private-a 10.42.16.0/20"]
+    Private B [icon: aws-ec2, label: "private-b 10.42.32.0/20"]
+  }
+
+  Isolated [color: orange] {
+    Isolated A [icon: aws-rds, label: "isolated-a 10.42.64.0/24"]
+    Isolated B [icon: aws-rds, label: "isolated-b 10.42.65.0/24"]
+  }
+
+  S3 Endpoint [icon: aws-vpc, label: "S3 gateway endpoint"]
+}
+
+Amazon S3 [icon: aws-s3]
+
+Internet <> Internet Gateway
+Internet Gateway <> Public A: both ways
+Internet Gateway <> Public B: both ways
+Internet Gateway - NAT Gateway: outbound
+NAT Gateway - Private A: out only
+NAT Gateway - Private B: out only
+Private A -- Isolated A: local
+Private B -- Isolated B: local
+Isolated B --> S3 Endpoint: S3 route
+S3 Endpoint --> Amazon S3: private path
